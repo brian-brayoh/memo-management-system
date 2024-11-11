@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Application</title>
+    <style>
+        /* Styling for the entire landing page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Container for the content on the landing page */
+        .landing-container {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        /* Header style */
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Button container for spacing */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        /* General button styling */
+        .btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            color: #fff;
+        }
+
+        /* Home button styling */
+        .btn-home {
+            background-color: #4CAF50;
+        }
+        .btn-home:hover {
+            background-color: #45a049;
+        }
+
+        /* Login button styling */
+        .btn-login {
+            background-color: #008CBA;
+        }
+        .btn-login:hover {
+            background-color: #007bb5;
+        }
+
+        /* Footer text */
+        p {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="landing-container">
+    <h1>Welcome to Our Application Memo management system</h1>
+    <p>Your gateway to a world of possibilities.</p>
+
+    <div class="button-container">
+        <!-- Home button links to the home page -->
+        <a href="index.php">
+            <button class="btn btn-home">Home</button>
+        </a>
+        <!-- Login button links to the login page -->
+        <a href="login.php">
+            <button class="btn btn-login">Login</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
