@@ -55,5 +55,7 @@ if (isset($_GET['serial_no'])) {
     $stmt->close();
 }
 
+
 $conn->close();
+
 ?>

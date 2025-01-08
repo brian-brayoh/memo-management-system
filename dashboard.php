@@ -3,391 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Memo Submission</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Memo Management Dashboard</title>
     <style>
-        /* Additional custom styling */
-        .navbar {
-            margin-bottom: 20px;
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
         }
 
+        /* Dashboard Container */
         .dashboard-container {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: #003366;
+            color: #fff;
+            width: 240px;
             padding: 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            height: 100vh;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
             margin-bottom: 20px;
         }
 
-        h1, h2 {
-            color: #333;
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
         }
 
-        table, th, td {
-            text-align: left;
-            color: #333;
+        .sidebar ul li {
+            margin: 15px 0;
         }
 
-        th {
-            background-color: #f8f9fa;
+        .sidebar ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
         }
 
-        tr:nth-child(even) {
-            background-color: #f4f4f9;
+        .sidebar ul li:hover {
+            background-color: #001d4d;
+            padding: 8px;
+            border-radius: 8px;
         }
 
-        /* Custom modal styles */
-        .modal-body {
-            max-height: 80vh;
-            overflow-y: auto;
+        .sidebar ul li a i {
+            margin-right: 10px;
         }
 
-        /* Custom style for Add Memo Button */
-        .btn-add-memo {
-            background-color: #28a745; /* Green background */
-            color: #fff; /* White text */
-            font-size: 16px;
-            padding: 10px 20px;
-            border-radius: 5px;
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+        }
+
+        /* Top Section */
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 8px 15px;
+            background-color: #005792;
+            color: #fff;
             border: none;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        .btn-add-memo:hover {
-            background-color: #218838; /* Darker green on hover */
-            transform: translateY(-2px); /* Subtle upward movement */
+        .search-bar button:hover {
+            background-color: #003f66;
         }
 
-        .btn-add-memo:focus {
-            outline: none;
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Focus effect */
+        /* Key Metrics Section */
+        .key-metrics {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
-        /* Custom style for Analytics Box */
-        .analytics-box {
-            background: #f1f1f1;
-            border-radius: 8px;
+        .metric {
+            flex: 1;
             padding: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .analytics-box h3 {
-            color: #333;
-            font-size: 24px;
+        .metric h3 {
+            font-size: 1.2rem;
+            color: #005792;
             margin-bottom: 10px;
         }
 
-        .analytics-box p {
-            color: #555;
-            font-size: 18px;
-        }
-
-        .analytics-box .total {
-            font-size: 36px;
+        .metric p {
+            font-size: 1.5rem;
+            color: #333;
             font-weight: bold;
-            color: #28a745; /* Green color for the total number */
         }
-        <style>
-/* Style for the floating result box */
-.floating-result-box {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    max-width: 600px;
-    background-color: #fefefe;
-    border: 1px solid #888;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    z-index: 9999;
-    display: none;
-}
 
-/* Close button style */
-.floating-result-box .close {
-    color: #aaa;
-    font-size: 30px;
-    font-weight: bold;
-    float: right;
-    cursor: pointer;
-}
+        /* Integration & Analytics Section */
+        .integration-analytics {
+            margin-top: 40px;
+        }
 
-.floating-result-box .close:hover,
-.floating-result-box .close:focus {
-    color: black;
-    text-decoration: none;
-}
-</style>
+        .integration-card {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
+        .integration-card h3 {
+            color: #003366;
+        }
+
+        /* Charts Section */
+        .charts {
+            margin-top: 40px;
+        }
+
+        .chart {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 300px;
+        }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Memo Dashboard</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="home.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-add-memo" href="#" data-toggle="modal" data-target="#addMemoModal">Add Memo</a>
-            </li>
+<?php
+// Placeholder data for dynamic display
+$totalMemos = 250;
+$pendingApprovals = 45;
+$completedMemos = 200;
+?>
+
+<div class="dashboard-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>Memo Management</h2>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Dashboard Overview</a></li>
+            <li><a href=memos.php ><i class="fas fa-plus"></i> Add New Memo</a></li>
+            <li><a href="Annalytics.php"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+            <li><a href="#"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
         </ul>
-    </div>
-</nav>
+    </aside>
 
-<!-- Home Page -->
-<div class="container">
-    <div class="dashboard-container">
-        <h1>Home</h1>
-        <div class="row">
-            <!-- Analytics Box for Total Memos -->
-            <div class="col-md-4">
-                <div class="analytics-box">
-                    <h3>Total Memos</h3>
-                    <p>In the system</p>
-                    <div class="total">
-                        <?php include 'memo_count.php'; ?>
-                    </div>
-                </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Section: Search Bar and Add Memo -->
+        <section class="top-section">
+            <h1>Dashboard Overview</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Search Memo...">
+                <button>Search</button>
             </div>
-        </div>
-    </div>
-</div>
+        </section>
 
-<!-- Dashboard / Search Memo -->
-<div class="container">
-    <div class="dashboard-container">
-        <h2>Search Memo by Serial Number</h2>
-        <form id="search-form" class="form-inline">
-            <input type="text" id="serial_no" name="serial_no" placeholder="Enter Serial Number" class="form-control mr-2" required>
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-        <div id="memo-results" class="memo-results"></div>
-    </div>
-</div>
-
-<!-- Floating Results Box (hidden by default) -->
-<div id="floatingResultBox" class="floating-result-box" style="display:none;">
-    <span class="close" onclick="closeResultBox()">&times;</span>
-    <div id="resultContent"></div>
-</div>
-
-
-
-<!-- Modal for Add Memo -->
-<div class="modal fade" id="addMemoModal" tabindex="-1" role="dialog" aria-labelledby="addMemoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addMemoModalLabel">Add Memo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <!-- Key Metrics Section -->
+        <section class="key-metrics">
+            <div class="metric">
+                <h3>Total Memos</h3>
+                <p><?php echo $totalMemos; ?></p>
             </div>
-            <div class="modal-body">
-                <form action="memo_action.php" method="POST">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Date In</label>
-                                <input type="date" name="date_in" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>From</label>
-                                <input type="text" name="from" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Document Type</label>
-                                <input type="text" name="document_type" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Ref No</label>
-                                <input type="text" name="ref_no" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>UADLIFU No</label>
-                                <input type="text" name="uadlifu_no" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Subject</label>
-                                <input type="text" name="subject" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Sender Comment</label>
-                        <textarea name="sender_comment" class="form-control" required></textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Action Officer</label>
-                                <input type="text" name="action_officer" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Date Out</label>
-                                <input type="date" name="date_out" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>To</label>
-                                <input type="text" name="to" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Receiver Comment</label>
-                                <textarea name="receiver_comment" class="form-control" required></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-            <label for="memo_file">Upload Memo</label>
-            <input type="file" name="memo_file" id="memo_file" class="form-control" accept=".pdf, .docx, .jpg, .jpeg, .png" required>
-        </div>
+            <div class="metric">
+                <h3>Pending Approvals</h3>
+                <p><?php echo $pendingApprovals; ?></p>
+            </div>
+            <div class="metric">
+                <h3>Completed Memos</h3>
+                <p><?php echo $completedMemos; ?></p>
+            </div>
+        </section>
 
-        <!-- File Preview Section -->
-        <div id="file-preview-container" class="form-group" style="display: none;">
-            <label>File Preview:</label>
-            <div id="file-preview"></div>
-        </div>
-
-        <button type="submit" class="btn btn-success btn-block">Submit Memo</button>
-    </form>
+        <!-- Graphs and Charts Section -->
+        <section class="charts">
+            <h2>Analytics</h2>
+            <div class="chart">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </section>
+    </main>
 </div>
 
+<!-- FontAwesome for Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!-- JS for Charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// JavaScript for file preview
-document.getElementById('memo_file').addEventListener('change', function(event) {
-    var fileInput = event.target;
-    var previewContainer = document.getElementById('file-preview-container');
-    var previewElement = document.getElementById('file-preview');
-
-    // Clear previous preview
-    previewElement.innerHTML = '';
-
-    var file = fileInput.files[0];
-
-    if (file) {
-        previewContainer.style.display = 'block';  // Show the preview section
-
-        // If it's an image, display the image preview
-        if (file.type.startsWith('image/')) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '100%';
-                img.style.height = 'auto';
-                previewElement.appendChild(img);
-            };
-            reader.readAsDataURL(file);
+    // Sample Chart.js integration
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April'],
+            datasets: [{
+                label: 'Memo Submissions',
+                data: [10, 20, 30, 40],
+                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
         }
-        // If it's a PDF, show a PDF preview link
-        else if (file.type === 'application/pdf') {
-            var pdfPreview = document.createElement('a');
-            pdfPreview.href = URL.createObjectURL(file);
-            pdfPreview.target = '_blank';
-            pdfPreview.textContent = 'Click here to preview the PDF';
-            previewElement.appendChild(pdfPreview);
-        }
-    } else {
-        previewContainer.style.display = 'none';  // Hide the preview section if no file is selected
-    }
-});
-</script>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Displaying Memos -->
-<div class="container">
-    <div class="dashboard-container">
-        <h2>All Memos</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Serial No</th>
-                    <th>Date In</th>
-                    <th>From</th>
-                    <th>Document Type</th>
-                    <th>Subject</th>
-                    <th>Action Officer</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="memo-list">
-                <!-- Memos will be displayed here using JavaScript -->
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- Footer -->
-<footer class="footer mt-5 py-3 bg-light">
-    <div class="container text-center">
-        <span>&copy; 2024 Memo Dashboard. All rights reserved.</span>
-    </div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-document.getElementById("search-form").addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent form from submitting normally
-
-    var serialNo = document.getElementById("serial_no").value;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "search_results.php?serial_no=" + serialNo, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var resultBox = document.getElementById("floatingResultBox");
-            var resultContent = document.getElementById("resultContent");
-
-            // Display the result in the floating box
-            resultContent.innerHTML = xhr.responseText;
-            resultBox.style.display = "block";
-        }
-    };
-    xhr.send();
-});
-
-function closeResultBox() {
-    document.getElementById("floatingResultBox").style.display = "none";
-}
+    });
 </script>
 
 </body>

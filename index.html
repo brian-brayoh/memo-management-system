@@ -3,97 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our Application</title>
+    <title>ODPP Portal</title>
     <style>
-        /* Styling for the entire landing page */
-        body {
-            font-family: Arial, sans-serif;
+        /* Global Styles */
+        body, h1, p, button {
+            font-family: 'Georgia', serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f4f6;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #003366;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: #333;
+            padding: 20px 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
-        /* Container for the content on the landing page */
-        .landing-container {
+        .logo-container {
+            position: absolute;
+            left: 30px;
+        }
+
+        .logo-container img {
+            width: 70px; /* Larger size */
+            height: auto;
+        }
+
+        .title-container {
             text-align: center;
-            padding: 30px;
+        }
+
+        .title-container h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .title-container p {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        /* Body and Landing Page */
+        body {
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .landing-container {
+            flex-grow: 1;
+            text-align: center;
+            padding: 40px;
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 90%;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 80px auto;
+            text-align: center;
         }
 
-        /* Header style */
-        h1 {
-            font-size: 2em;
-            color: #333;
+        .landing-container h1 {
+            font-size: 2.5em;
             margin-bottom: 15px;
+            color: #003366;
         }
 
-        /* Button container for spacing */
+        .landing-container p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Sign Up and Login Buttons */
         .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin-top: 20px;
         }
 
-        /* General button styling */
-        .btn {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .button-container a {
+            text-decoration: none;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px;
             transition: background-color 0.3s ease;
-            margin: 10px;
-            color: #fff;
         }
 
-        /* Home button styling */
-        .btn-home {
-            background-color: #4CAF50;
-        }
-        .btn-home:hover {
-            background-color: #45a049;
+        .login-button {
+            background-color: #ffcc00;
+            color: #003366;
         }
 
-        /* Login button styling */
-        .btn-login {
-            background-color: #008CBA;
-        }
-        .btn-login:hover {
-            background-color: #007bb5;
+        .signup-button {
+            background-color: #003366;
+            color: #ffcc00;
         }
 
-        /* Footer text */
-        p {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 20px;
+        .button-container a:hover {
+            opacity: 0.85;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<div class="landing-container">
-    <h1>Welcome to Our Application Memo management system</h1>
-    <p>Your gateway to a world of possibilities.</p>
+<header>
+    <div class="logo-container">
+        <img src="odpp.jpeg" alt="ODPP Logo" class="logo">
+    </div>
+    <div class="title-container">
+        <h1>ODPP Portal</h1>
+        <p>Secure Access for Authorized Users</p>
+    </div>
+</header>
 
+<!-- Main Content -->
+<div class="landing-container">
+    <h1>Welcome to the ODPP Memo Management Portal</h1>
+    <p>Access the platform for secure document and data management, anywhere, anytime.</p>
+
+    <!-- Sign Up and Login Buttons -->
     <div class="button-container">
-        <!-- Home button links to the home page -->
-        <a href="index.php">
-            <button class="btn btn-home">Home</button>
-        </a>
-        <!-- Login button links to the login page -->
-        <a href="login.php">
-            <button class="btn btn-login">Login</button>
-        </a>
+        <a href="login.php" class="login-button">Login</a>
+        <a href="signup.php" class="signup-button">Sign Up</a>
     </div>
 </div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 ODPP. All rights reserved.</p>
+    <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+</footer>
 
 </body>
 </html>
